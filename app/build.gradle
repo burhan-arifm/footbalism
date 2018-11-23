@@ -18,8 +18,27 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "TSDB_URL", "\"" + getSportsDBUrl() + "\""
+            buildConfigField "String", "TSDB_API_KEY", "\"" + getSportsDBApiKey() + "\""
+        }
+        debug {
+
+            buildConfigField "String", "TSDB_URL", "\"" + getSportsDBUrl() + "\""
+            buildConfigField "String", "TSDB_API_KEY", "\"" + getSportsDBApiKey() + "\""
         }
     }
+}
+
+static def getSportsDBApiKey() {
+    Properties props = new Properties()
+    props.load(new FileInputStream(new File('secrets.properties')))
+    return props['TSDB_API_KEY']
+}
+
+static def getSportsDBUrl() {
+    Properties props = new Properties()
+    props.load(new FileInputStream(new File('secrets.properties')))
+    return props['TSDB_URL']
 }
 
 dependencies {
