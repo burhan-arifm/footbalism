@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import burhanarifm.footbalism.R
 import org.jetbrains.anko.*
 
-class TeamUI : AnkoComponent<ViewGroup> {
+class TeamListUI : AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>): View {
         return with(ui) {
             linearLayout {

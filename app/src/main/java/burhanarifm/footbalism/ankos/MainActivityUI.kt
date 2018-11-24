@@ -13,13 +13,13 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
-class MainUI : AnkoComponent<MainActivity> {
+class MainActivityUI : AnkoComponent<MainActivity> {
 
 
-    lateinit var listTeam: RecyclerView
-    lateinit var progressBar: ProgressBar
-    lateinit var spinner: Spinner
-    lateinit var swipeRefresh: SwipeRefreshLayout
+    private lateinit var listTeam: RecyclerView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var spinner: Spinner
+    private lateinit var swipeRefresh: SwipeRefreshLayout
 
     override fun createView(ui: AnkoContext<MainActivity>): View {
         return with(ui) {
@@ -30,8 +30,12 @@ class MainUI : AnkoComponent<MainActivity> {
                 leftPadding = dip(16)
                 rightPadding = dip(16)
 
-                spinner = spinner()
+                spinner = spinner() {
+                    id = R.id.league_spinner
+
+                }
                 swipeRefresh = swipeRefreshLayout {
+                    id = R.id.main_swipe
                     setColorSchemeResources(
                         R.color.colorAccent,
                         android.R.color.holo_green_light,
@@ -42,11 +46,13 @@ class MainUI : AnkoComponent<MainActivity> {
                         lparams (width = matchParent, height = wrapContent)
 
                         listTeam = recyclerView {
+                            id = R.id.listRecycler
                             lparams (width = matchParent, height = wrapContent)
                             layoutManager = LinearLayoutManager(context)
                         }
 
                         progressBar = progressBar {
+                            id = R.id.progress
                         }.lparams{
                             centerHorizontally()
                         }
